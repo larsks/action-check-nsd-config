@@ -14,6 +14,7 @@ if [ -d zones ]; then
 	for zf in zones/*; do
 		echo "checking $zf"
 		zone=${zf%.zone}
+		zone=${zone##*/}
 		nsd-checkzone $zone $zf
 	done
 fi
