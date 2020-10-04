@@ -6,8 +6,7 @@ nsd_config_file=$1
 zone_directory=$2
 zone_pattern=$3
 
-cd /github/workspace
-
+echo "checking nsd configuration"
 nsd-checkconf -v ${nsd_config_file}
 
 for zf in "${zone_directory}"/$zone_pattern; do
