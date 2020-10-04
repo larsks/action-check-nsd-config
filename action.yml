@@ -3,8 +3,12 @@ name: Verify NSD configuration
 description: Verify NSD nsd.conf and zonefile configuration
 
 inputs:
+  nsd_config_file:
+    description: path to nsd configuration file
+    default: 'nsd.conf'
   zone_directory:
     description: directory containing zonefiles to validate
+    default: 'zones'
   zone_pattern:
     description: glob pattern of zonefiles to check
     default: '*.zone'
@@ -17,5 +21,6 @@ runs:
   using: docker
   image: Dockerfile
   args:
+    - ${{ inputs.nsd_config_file }}
     - ${{ inputs.zone_directory }}
     - ${{ inputs.zone_pattern }}
