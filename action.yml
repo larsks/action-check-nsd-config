@@ -1,0 +1,19 @@
+---
+name: Verify NSD configuration
+description: Verify NSD nsd.conf and zonefile configuration
+
+inputs:
+  zonefiles:
+    description: list of zonefiles to validate
+  zonefile_directory:
+    description: directory containing zonefiles to validate
+
+outputs:
+  errors:
+    description: any errors reported by the validation process
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - nsd-checkzone
