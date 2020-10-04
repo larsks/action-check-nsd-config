@@ -7,8 +7,11 @@ zone_directory=$2
 zone_pattern=$3
 
 echo "checking nsd configuration"
-nsd-checkconf -v ${nsd_config_file}
+nsd-checkconf -v ${nsd_config_file} > /tmp/config
 
-for zf in "${zone_directory}"/$zone_pattern; do
-	echo "checking zonefile $zf"
+echo "checking zone files"
+for zf in zones/*; do
+	echo "checking $zf"
+	zone=${zf%.zone}
+	nsd-checkzone $zone $zf
 done
